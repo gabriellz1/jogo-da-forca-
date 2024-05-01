@@ -1,8 +1,8 @@
 #include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> //'fgets', 'strlen'
-#include <time.h> //aleatoriedade da 'hand'
+#include <string.h> 
+#include <time.h> 
 
 char palavraSecretaManual[50], palavraJogo[50];
 
@@ -95,8 +95,8 @@ void escolhaPalavraAleatoria(){
 	palavra[qtd][strlen(palavra[qtd])];
 	strcpy(palavraAleatoria, palavra[qtd]);
 
-	// imprime os underline/underscores para cada letra da palavra secreta, ou
-    // seja, imprime palavraAleatoria.
+	
+    
   	for (int i = 0; i < strlen(palavraAleatoria); i++) {
     palavraAleatoria[i] = '_';
   	}
@@ -105,21 +105,17 @@ void escolhaPalavraAleatoria(){
 void escrevaPalavraSecreta(char palavraManual[50]){
 	
   	printf("Jogador 1 informe a palavra secreta: ");
-  	fgets(palavraSecretaManual, 30, stdin); // essa função 'fgets' lê a string do teclado e armazena na
-                // variável palavraSecretaManual, podendo ser adicionadas palavras
-                // com espaços.
+  	fgets(palavraSecretaManual, 30, stdin);   
+
+	
   	printf("A palavra secreta é: %s", palavraSecretaManual);
   	printf("\nA palavra tem %lu caracteres", strlen(palavraSecretaManual) - 1);
- 	 // a função strlen retorna o tamanho da string em inteiros.
- 	 // copia de palavraSecretaManual para palavraJogo.
- 	
- 	// retira o ultimo caracter de palavraNaTela que esta a mais devido a captura
-    // ser em 'fgets'
+
+	
 	palavraSecretaManual[strlen(palavraSecretaManual) - 1] = '\0';
 	strcpy(palavraJogo, palavraSecretaManual);
 
-	// imprime os underline/underscores para cada letra da palavra secreta, ou
-    // seja, imprime palavraJogo.
+	
   	for (int i = 0; i < strlen(palavraJogo); i++) {
     palavraJogo[i] = '_';
   }
@@ -133,22 +129,22 @@ void jogo(){
   int erros = 0;
   while (1) {
     system("cls");
-	// imprime a forca
+	
     forca(erros);
     
     printf("\nAdivinhe: ");
-    // separa os caractere de palavraNaTela por espaço.
+   
     for (int i = 0; i < strlen(palavraJogo); i++) {
       printf(" %c", palavraJogo[i]);
     }
-    // recebe a letra.
+   
     printf("\nLetra: ");
     char letra;
     scanf("%c", &letra);
     
     fflush(stdin);
-    // verifica se a letra esta correta.
-    int seraQueErrou = 1; // 1 = sim 0 = nao
+   
+    int seraQueErrou = 1; 
     for (int i = 0; i < strlen(palavraJogo); i++) {
       if (letra == palavraSecretaManual[i]) {
         palavraJogo[i] = letra;
@@ -167,7 +163,7 @@ void jogo(){
 	}
     
     if (erros == 6) {
-      // perdeu
+     
       forca(erros);
       break;
     }
